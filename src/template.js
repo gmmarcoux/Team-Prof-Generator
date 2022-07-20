@@ -9,14 +9,14 @@ const generateManager = manager => {
     return `
     <div class="employeeCard">
         <div class="cardHeader">
-            <h2 class="NameRole">${manager.name}</h2>
+            <h2 class="NameRole">${manager.getName()}</h2>
             <h3 class="NameRole"><i class=""></i>${manager.getRole()}</h3>
         </div>
 
         <div class="cardBody">
-            <h6 class="cardInfo id">ID: ${manager.id}</h6>
-            <h6 class="cardInfo email">Email: <a href="mailto:${manager.email}">${manager.email}</a></h6>
-            <h6 class="cardInfo office">Office Number: ${manager.officeNumber}</h6>
+            <h6 class="cardInfo id">ID: ${manager.getID()}</h6>
+            <h6 class="cardInfo email">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></h6>
+            <h6 class="cardInfo office">Office Number: ${manager.getOfficeNumber()}</h6>
         </div>
     </div>
     `;
@@ -28,14 +28,14 @@ const generateIntern = intern => {
     return `
     <div class="employeeCard">
         <div class="cardHeader">
-            <h2 class="NameRole">${intern.name}</h2>
+            <h2 class="NameRole">${intern.getName()}</h2>
             <h3 class="NameRole"><i class=""></i>${intern.getRole()}</h3>
         </div>
 
         <div class="cardBody">
-            <h6 class="cardInfo id">ID: ${intern.id}</h6>
-            <h6 class="cardInfo email">Email: <a href="mailto:${intern.email}">${manager.email}</a></h6>
-            <h6 class="cardInfo office">Office Number: ${intern.school}</h6>
+            <h6 class="cardInfo id">ID: ${intern.getID()}</h6>
+            <h6 class="cardInfo email">Email: <a href="mailto:${intern.getEmail()}">${manager.getEmail()}</a></h6>
+            <h6 class="cardInfo office">Office Number: ${intern.getSchool()}</h6>
         </div>
     </div>
     `;
@@ -47,23 +47,56 @@ const generateEngineer = engineer => {
     return `
     <div class="employeeCard">
         <div class="cardHeader">
-            <h2 class="NameRole">${engineer.name}</h2>
+            <h2 class="NameRole">${engineer.getName()}</h2>
             <h3 class="NameRole"><i class=""></i>${engineer.getRole()}</h3>
         </div>
 
         <div class="cardBody">
-            <h6 class="cardInfo id">ID: ${engineer.id}</h6>
-            <h6 class="cardInfo email">Email: <a href="mailto:${engineer.email}">${manager.email}</a></h6>
-            <h6 class="cardInfo office">Office Number: ${intern.gethub}</h6>
+            <h6 class="cardInfo id">ID: ${engineer.getID()}</h6>
+            <h6 class="cardInfo email">Email: <a href="mailto:${engineer.getEmail()}">${manager.getEmail()}</a></h6>
+            <h6 class="cardInfo office">Office Number: ${intern.getGithub()}</h6>
         </div>
     </div>
     `;
 };
 
+//B. Array
+generateHTML = (data) => {
+
+    pageArray = [];
+
+    for (let i = 0; i <data.lemngth; i++) {
+        const employee = data[i];
+        const role = employee.getRole();
+
+        //Manager
+        if (role === 'Manager') {
+            const managerCard = generateManager(employee);
+            pageArray.push(managerCard);
+        }
+        //Intern
+        if (role === 'Inter') {
+            const internCard = generateIntern(employee);
+            pageArray.push(InternCard);
+        }
+        //Engineer
+        if (role === 'Engineer') {
+            const engineerCard = generateEngineer(employee);
+            pageArray.push(engineerCard);
+        }
+    }
+
+    //join string and return to created page
+    const employeeCard = pageArray.join('')
+
+    const generateTeam = generateTeamPg(employeeCard);
+    return generateTeam;
+};
+
+
 
 
 //4. THE WHOLE PAGE
-
 const generateTeam = employeeCard => {
     return `
     <!DOCTYPE html>
