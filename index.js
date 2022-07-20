@@ -15,6 +15,27 @@ const Engineer = require('./lib/engineer');
 //array
 let teamPlayers = [];
 
+//Making a new team memeber
+function addteamPlayers() {
+    inquirer.prompt({
+        type: "list",
+        name: "addTeamPlayers",
+        message: "What role is the new team member?",
+        choices: ["Intern", "Engineer", "Finished"]
+    })
+        .then(answers => {
+            let { addteamPlayers } = answers;
+
+            if (addteamPlayers === "Engineer") {
+                addEngineer();
+            } else if (addteamPlayers === "Intern") {
+                addIntern();
+            } else if (addteamPlayers = "Finished") {
+                generateHTML();
+            }
+        })
+}
+
 //PROMPTS
 //Manager prompts
 function addManager() {
@@ -42,7 +63,11 @@ function addManager() {
             name: "managerOfficeNum",
             message: "Which room number is the Manager's office?"
         },
-    ])
+    ]).then(answers => {
+        const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNum);
+        teamArray.push(manager);
+        createTeam();
+    });
 }
 
 //Intern prompts
@@ -71,7 +96,11 @@ function addIntern() {
             name: "internSchool",
             message: "Which school does the Intern attend?"
         },
-    ])
+    ]).then(answers => {
+        const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
+        teamArray.push(manager);
+        createTeam();
+    });
 }
 
 
@@ -101,5 +130,30 @@ function addEngineer() {
             name: "githubAddy",
             message: "Please list the Engineer's Github account."
         },
-    ])
+    ]).then(answers => {
+        const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.githubAddy);
+        teamArray.push(engineer);
+        createTeam();
+    });
 }
+
+//function to start and run the app
+function runApp () {
+    fs.writeFile("./dist/index.html", generateHTML(teamPlayers), err => {
+        if (err) {
+            return console.error(err);
+        }else {
+            console.log("Congrats! Your directory has been created!");
+            fs.copyFile("./src/style.css", "./dist/style.css", err => {
+                if (err) {
+                    console(err)
+                    return;
+                };
+            });
+        };
+    });
+};
+
+createTeam ();
+
+addManager();
