@@ -1,0 +1,27 @@
+{
+  "name": "team-prof-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmmarcoux/Team-Prof-Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gmmarcoux/Team-Prof-Generator/issues"
+  },
+  "homepage": "https://github.com/gmmarcoux/Team-Prof-Generator#readme",
+  "dependencies": {
+    "inquirer": "^9.0.2",
+    "jest": "^28.1.3"
+  }
+}
