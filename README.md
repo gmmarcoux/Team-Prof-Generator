@@ -38,4 +38,4 @@ THEN I exit the application, and the HTML is generated
 
 ## Links
 github - *https://github.com/gmmarcoux/Team-Prof-Generator*
-link - **
+link - *https://gmmarcoux.github.io/Team-Prof-Generator/*
