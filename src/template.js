@@ -61,7 +61,7 @@ const generateEngineer = engineer => {
 };
 
 //B. Array
-generateHTML = (data) => {
+const generateHTML = (data) => {
 
     pageArray = [];
 
