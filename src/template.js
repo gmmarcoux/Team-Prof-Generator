@@ -78,10 +78,18 @@ const generateTeam = employeeCard => {
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
+
+    <body>
+
+        <header class="h1 w-100 text-center">
+            <h1 class="title">Team Profile Generator!</h1>
+        </header>
+
+        <div class="container">
+            <div class="row col-11 justify-content-center d-flex">${generateTeam(team)}</div>
+        </div>
+
+    </body>
+    </html>
     `;
-
-
-
-
-
-
+}
